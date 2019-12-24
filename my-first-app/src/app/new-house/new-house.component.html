@@ -1,1 +1,27 @@
-<p>new-house works!</p>
+<p>Name: {{house.name}}</p>
+<label for="houseName">Enter house name : </label>
+<input type="text" name="houseName" id="houseName" [(ngModel)]="house.name">
+
+<p>Color: {{house.color}}</p>
+<label for="houseColor">Enter house color : </label>
+<input type="text" name="houseColor" id="houseColor" [(ngModel)]="house.color">
+
+<p>Owner: {{house.ownerName}}</p>
+<label for="ownerName">Enter owner's name : </label>
+<input type="text" name="ownerName" id="ownerName" [(ngModel)]="house.ownerName">
+
+<p>Floors: {{house.numOfFloors}}</p>
+<label for="houseName">Enter total Floors : </label>
+<input type="number" name="numOfFloors" id="numOfFloors" [(ngModel)]="house.numOfFloors">
+
+<p>Rooms: {{house.numOfRoom}}</p>
+<label for="numOfRoom">Enter total rooms : </label>
+<input type="number" name="numOfRoom" id="numOfRoom" [(ngModel)]="house.numOfRoom">
+
+<p>Has lift: {{house.hasLift}}</p>
+<label for="hasLift">Has Lift : </label>
+<input type="checkbox" name="hasLift" id="hasLift" [(ngModel)]="house.hasLift">
+
+<p>Address: {{house.address}}</p>
+<label for="address">Enter address : </label>
+<textarea name="address" id="address" cols="30" rows="2" [(ngModel)]="house.address"></textarea>
