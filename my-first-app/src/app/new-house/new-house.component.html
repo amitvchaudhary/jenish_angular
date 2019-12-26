@@ -1,27 +1,44 @@
-<p>Name: {{house.name}}</p>
-<label for="houseName">Enter house name : </label>
-<input type="text" name="houseName" id="houseName" [(ngModel)]="house.name">
+<div *ngFor="let house of houseList">
 
-<p>Color: {{house.color}}</p>
-<label for="houseColor">Enter house color : </label>
-<input type="text" name="houseColor" id="houseColor" [(ngModel)]="house.color">
+  <p>Name: {{house.name}}</p>
 
-<p>Owner: {{house.ownerName}}</p>
-<label for="ownerName">Enter owner's name : </label>
-<input type="text" name="ownerName" id="ownerName" [(ngModel)]="house.ownerName">
+  <p>Color: {{house.color}}</p>
 
-<p>Floors: {{house.numOfFloors}}</p>
-<label for="houseName">Enter total Floors : </label>
-<input type="number" name="numOfFloors" id="numOfFloors" [(ngModel)]="house.numOfFloors">
+  <p>Owner: {{house.ownerName}}</p>
 
-<p>Rooms: {{house.numOfRoom}}</p>
-<label for="numOfRoom">Enter total rooms : </label>
-<input type="number" name="numOfRoom" id="numOfRoom" [(ngModel)]="house.numOfRoom">
+  <p>Floors: {{house.numOfFloors}}</p>
 
-<p>Has lift: {{house.hasLift}}</p>
-<label for="hasLift">Has Lift : </label>
-<input type="checkbox" name="hasLift" id="hasLift" [(ngModel)]="house.hasLift">
+  <p>Rooms: {{house.numOfRoom}}</p>
 
-<p>Address: {{house.address}}</p>
-<label for="address">Enter address : </label>
-<textarea name="address" id="address" cols="30" rows="2" [(ngModel)]="house.address"></textarea>
+  <p>Has lift: {{house.hasLift}}</p>
+
+  <p>Address: {{house.address}}</p>
+
+</div>
+
+<!-- <div>
+  <label for="houseName">Enter house name : </label>
+  <input type="text" name="houseName" id="houseName" [(ngModel)]="house.name">
+  <br><br>
+  <label for="houseColor">Enter house color : </label>
+  <input type="text" name="houseColor" id="houseColor" [(ngModel)]="house.color">
+  <br><br>
+  <label for="ownerName">Enter owner's name : </label>
+  <input type="text" name="ownerName" id="ownerName" [(ngModel)]="house.ownerName">
+  <br><br>
+  <label for="houseName">Enter total Floors : </label>
+  <input type="number" name="numOfFloors" id="numOfFloors" [(ngModel)]="house.numOfFloors">
+  <br><br>
+  <label for="numOfRoom">Enter total rooms : </label>
+  <input type="number" name="numOfRoom" id="numOfRoom" [(ngModel)]="house.numOfRoom">
+  <br><br>
+  <label for="hasLift">Has Lift : </label>
+  <input type="checkbox" name="hasLift" id="hasLift" [(ngModel)]="house.hasLift">
+  <br><br>
+  <label for="address">Enter address : </label>
+  <textarea name="address" id="address" cols="30" rows="2" [(ngModel)]="house.address"></textarea>
+  <br><br>
+
+</div> -->
+
+<button (click)="createHouse()">Add House</button>
