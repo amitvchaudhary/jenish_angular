@@ -1,10 +1,9 @@
 <p>Cars Report : (Listing from array)</p>
 
 <label for="brand">Select Brand : </label>
-<input type="radio" name="brand" #audi>Audi
-<input type="radio" name="brand" #bmw>BMW
-<input type="radio" name="brand" #Ferrari>Ferrari
-<input type="radio" name="brand" #Lamborghini>Lamborghini
+<input type="radio" name="brand" value="audiCars" #audi (click)="checkBrand(audi.value)">Audi
+<input type="radio" name="brand" value="bmwCars" #bmw (click)="checkBrand(bmw.value)">BMW
+<input type="radio" name="brand" value="ferrariCars" #ferrari (click)="checkBrand(ferrari.value)">Ferrari
 
 <br><br>
 
@@ -16,12 +15,7 @@
 <label for="model">Car Model : </label>
 <select name="model" #model>
   <option value="undefined">-----Select-----</option>
-  <option value="A3">A3</option>
-  <option value="A3">A4</option>
-  <option value="A3">A5</option>
-  <option value="Q3">Q3</option>
-  <option value="Q5">Q5</option>
-  <option value="Q7">Q7</option>
+  <option *ngFor="let car of optData">{{car}}</option>
 </select>
 
 <br><br>
