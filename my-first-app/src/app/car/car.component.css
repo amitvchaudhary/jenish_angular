@@ -1,0 +1,15 @@
+span {
+  margin-right: 24px;
+}
+
+span:first-child {
+  margin-left: 24px;
+}
+
+.last-child {
+  margin-right: 0;
+}
+
+li {
+  list-style-position: outside;
+}

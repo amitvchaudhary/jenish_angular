@@ -1,0 +1,73 @@
+<p>Cars Report : (Listing from array)</p>
+
+<label for="brand">Select Brand : </label>
+<input type="radio" name="brand" #audi>Audi
+<input type="radio" name="brand" #bmw>BMW
+<input type="radio" name="brand" #Ferrari>Ferrari
+<input type="radio" name="brand" #Lamborghini>Lamborghini
+
+<br><br>
+
+<label for="owner">Car Owner : </label>
+<input type="text" name="owner" #name placeholder="Owner name">
+
+<br><br>
+
+<label for="model">Car Model : </label>
+<select name="model" #model>
+  <option value="undefined">-----Select-----</option>
+  <option value="A3">A3</option>
+  <option value="A3">A4</option>
+  <option value="A3">A5</option>
+  <option value="Q3">Q3</option>
+  <option value="Q5">Q5</option>
+  <option value="Q7">Q7</option>
+</select>
+
+<br><br>
+
+<label for="seat">Seater : </label>
+<input type="number" name="seat" #seat min="2" max="6" step="2" value="2">
+
+<br><br>
+
+<label for="open">Is open Car : </label>
+<input type="checkbox" name="open" #open>
+
+<br><br>
+
+<label for="color">Car Color : </label>
+<select name="color" #color>
+  <option value="gray">-----Default-----</option>
+  <option value="white">white</option>
+  <option value="black">Black</option>
+  <option value="white">Silver</option>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+</select>
+
+<br><br>
+
+<button (click)="addCar(name.value, model.value, seat.value, open.checked, color.value)">Add Car</button>
+
+<ol>
+  <li *ngFor="let car of carList">
+
+    <span>Car Model : {{car.modelName}}</span>
+
+    <span>Car Brand : {{car.companyName}}</span>
+
+    <span [ngStyle]="{'color': car.color}">Car Color : {{car.color}}</span>
+
+    <span>Car Owner : {{car.ownerName | titlecase}}</span>
+
+    <span>Seats in Car : {{car.numOfSeats}}</span>
+
+    <span>Doors in Car : {{car.numOfDoors}}</span>
+
+    <span class="last-child">Open Car : {{car.isOpenCar}}</span>
+
+    <br><br>
+
+  </li>
+</ol>
