@@ -18,6 +18,8 @@ export class CarComponent implements OnInit {
 
   optData: string[];
 
+  carBrand: string = "undefined";
+
   ngOnInit() {
 
   }
@@ -25,25 +27,12 @@ export class CarComponent implements OnInit {
   addCar(owner: string, model: string, seater: number, open: boolean, color: string) {
     const car = new Car();
     car.modelName = model;
-    car.companyName = 'Audi';
+    car.brand = this.carBrand;
     car.ownerName = owner;
     car.color = color;
     car.isOpenCar = open;
     car.numOfSeats = seater;
-    car.numOfDoors = car.numOfSeats;
 
     this.carList.push(car);
-  }
-
-  checkBrand(val: string) {
-    if (val == 'audiCars') {
-      this.optData = this.audiCars;
-    }
-    if (val == 'bmwCars') {
-      this.optData = this.bmwCars;
-    }
-    if (val == 'ferrariCars') {
-      this.optData = this.ferrariCars;
-    }
   }
 }

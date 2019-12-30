@@ -1,21 +1,21 @@
 <p>Cars Report : (Listing from array)</p>
 
 <label for="brand">Select Brand : </label>
-<input type="radio" name="brand" value="audiCars" #audi (click)="checkBrand(audi.value)">Audi
-<input type="radio" name="brand" value="bmwCars" #bmw (click)="checkBrand(bmw.value)">BMW
-<input type="radio" name="brand" value="ferrariCars" #ferrari (click)="checkBrand(ferrari.value)">Ferrari
+<input type="radio" name="brand" value="Audi" [(ngModel)]="carBrand" (click)="optData = audiCars">Audi
+<input type="radio" name="brand" value="BMW" [(ngModel)]="carBrand" (click)="optData = bmwCars">BMW
+<input type="radio" name="brand" value="Ferrari" [(ngModel)]="carBrand" (click)="optData = ferrariCars">Ferrari
 
 <br><br>
 
 <label for="owner">Car Owner : </label>
-<input type="text" name="owner" #name placeholder="Owner name">
+<input type="text" name="owner" #name placeholder="Owner name" value="undefined">
 
 <br><br>
 
 <label for="model">Car Model : </label>
 <select name="model" #model>
   <option value="undefined">-----Select-----</option>
-  <option *ngFor="let car of optData">{{car}}</option>
+  <option *ngFor="let model of optData">{{model}}</option>
 </select>
 
 <br><br>
@@ -32,12 +32,11 @@
 
 <label for="color">Car Color : </label>
 <select name="color" #color>
-  <option value="gray">-----Default-----</option>
-  <option value="white">white</option>
+  <option value="black">-----Default-----</option>
   <option value="black">Black</option>
-  <option value="white">Silver</option>
   <option value="red">Red</option>
   <option value="blue">Blue</option>
+  <option value="yellow">Yellow</option>
 </select>
 
 <br><br>
@@ -47,19 +46,18 @@
 <ol>
   <li *ngFor="let car of carList">
 
-    <span>Car Model : {{car.modelName}}</span>
+    <span><strong>Car Brand :</strong> {{car.brand}}</span>
 
-    <span>Car Brand : {{car.companyName}}</span>
+    <span><strong>Car Model :</strong> {{car.modelName}}</span>
 
-    <span [ngStyle]="{'color': car.color}">Car Color : {{car.color}}</span>
+    <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
 
-    <span>Car Owner : {{car.ownerName | titlecase}}</span>
+    <span><strong>Car Owner :</strong> {{car.ownerName | titlecase}}</span>
 
-    <span>Seats in Car : {{car.numOfSeats}}</span>
+    <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
 
-    <span>Doors in Car : {{car.numOfDoors}}</span>
-
-    <span class="last-child">Open Car : {{car.isOpenCar}}</span>
+    <span class="last-child"><strong>Open Car :</strong>
+      <b [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</b></span>
 
     <br><br>
 
