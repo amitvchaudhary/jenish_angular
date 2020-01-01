@@ -8,6 +8,9 @@ span:first-child {
 
 .last-child {
   margin-right: 0;
+  cursor: pointer;
+  color: #24405c;
+  text-decoration: underline;
 }
 
 li {

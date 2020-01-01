@@ -1,9 +1,9 @@
 <p>Cars Report : (Listing from array)</p>
 
 <label for="brand">Select Brand : </label>
-<input type="radio" name="brand" value="Audi" [(ngModel)]="carBrand" (click)="optData = audiCars">Audi
-<input type="radio" name="brand" value="BMW" [(ngModel)]="carBrand" (click)="optData = bmwCars">BMW
-<input type="radio" name="brand" value="Ferrari" [(ngModel)]="carBrand" (click)="optData = ferrariCars">Ferrari
+<input type="radio" name="brand" value="Audi" [(ngModel)]="carBrand" (change)="optData = audiCars">Audi
+<input type="radio" name="brand" value="BMW" [(ngModel)]="carBrand" (change)="optData = bmwCars">BMW
+<input type="radio" name="brand" value="Ferrari" [(ngModel)]="carBrand" (change)="optData = ferrariCars">Ferrari
 
 <br><br>
 
@@ -43,8 +43,14 @@
 
 <button (click)="addCar(name.value, model.value, seat.value, open.checked, color.value)">Add Car</button>
 
+<p>In stock :</p>
+
+<button (click)="moveCar('stock', 0)">Add to Production</button>
+
 <ol>
-  <li *ngFor="let car of carList">
+  <li *ngFor="let car of carList; let i = index">
+
+    <span><strong>Car Owner :</strong> {{car.ownerName | titlecase}}</span>
 
     <span><strong>Car Brand :</strong> {{car.brand}}</span>
 
@@ -52,12 +58,39 @@
 
     <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
 
+    <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
+
+    <span><strong>Open Car :</strong>
+      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span>
+
+    <span class="last-child" (click)="moveCar('stock', i)">Move to Production</span>
+
+    <br><br>
+
+  </li>
+</ol>
+
+<p>In Production :</p>
+
+<button (click)="moveCar('prod', 0)">Add to Stock</button>
+
+<ol>
+  <li *ngFor="let car of prodCarList; let i = index">
+
     <span><strong>Car Owner :</strong> {{car.ownerName | titlecase}}</span>
+
+    <span><strong>Car Brand :</strong> {{car.brand}}</span>
+
+    <span><strong>Car Model :</strong> {{car.modelName}}</span>
+
+    <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
 
     <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
 
-    <span class="last-child"><strong>Open Car :</strong>
-      <b [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</b></span>
+    <span><strong>Open Car :</strong>
+      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span>
+
+    <span class="last-child" (click)="moveCar('prod', i)">Move to Stock</span>
 
     <br><br>
 

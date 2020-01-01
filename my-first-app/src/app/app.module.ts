@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { NewHouseComponent } from './new-house/new-house.component';
 import { from } from 'rxjs';
 import { CarComponent } from './car/car.component';
+import { CarListComponent } from './car-list/car-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewHouseComponent,
-    CarComponent
+    CarComponent,
+    CarListComponent
   ],
   imports: [
     BrowserModule,
