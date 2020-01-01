@@ -1,8 +1,9 @@
 export class Car {
   modelName: string;
   brand: string;
-  color: string;
+  // color: string;
   ownerName: string;
-  numOfSeats: number;
-  isOpenCar: boolean;
+  // numOfSeats: number;
+  // isOpenCar: boolean;
+  status: string;
 }

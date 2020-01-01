@@ -23,22 +23,23 @@ export class CarComponent implements OnInit {
   carBrand: string = "Audi";
 
   ngOnInit() {
-    this.addCar('jenish', 'A5', 2, true, 'black');
-    this.addCar('nil', 'A5', 4, false, 'blue');
-    this.addCar('mayur', 'A4', 2, true, 'red');
-    this.addCar('hima', 'A4', 4, false, 'blue');
-    this.addCar('parth', 'A3', 2, true, 'red');
-    this.addCar('aditi', 'A3', 4, false, 'black');
+    this.addCar('jenish', 'A5', 2, true, 'black', 'stock');
+    this.addCar('nil', 'A5', 4, false, 'blue', 'stock');
+    this.addCar('mayur', 'A4', 2, true, 'red', 'stock');
+    this.addCar('hima', 'A4', 4, false, 'blue', 'stock');
+    this.addCar('parth', 'A3', 2, true, 'red', 'stock');
+    this.addCar('aditi', 'A3', 4, false, 'black', 'stock');
   }
 
-  addCar(owner: string, model: string, seater: number, open: boolean, color: string) {
+  addCar(owner: string, model: string, seater: number, open: boolean, color: string, status: string) {
     const car = new Car();
     car.modelName = model;
     car.brand = this.carBrand;
     car.ownerName = owner;
-    car.color = color;
-    car.isOpenCar = open;
-    car.numOfSeats = seater;
+    // car.color = color;
+    // car.isOpenCar = open;
+    // car.numOfSeats = seater;
+    car.status = status;
 
     this.carList.push(car);
   }
@@ -63,5 +64,20 @@ export class CarComponent implements OnInit {
       }
     }
   }
-  
+
+  moveAllCar(value) {
+    if (value == 'stock') {
+      this.carList.forEach(element => {
+        this.prodCarList.push(element);
+        this.carList = [];
+      });
+    }
+    if (value == 'prod') {
+      this.prodCarList.forEach(element => {
+        this.carList.push(element);
+        this.prodCarList = [];
+      });
+    }
+  }
+
 }

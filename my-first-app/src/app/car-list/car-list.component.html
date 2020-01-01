@@ -7,14 +7,14 @@
 
     <span><strong>Car Model :</strong> {{car.modelName}}</span>
 
-    <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
+    <!-- <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span> -->
 
-    <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
+    <!-- <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span> -->
 
-    <span><strong>Open Car :</strong>
-      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span>
+    <!-- <span><strong>Open Car :</strong>
+      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span> -->
 
-    <!-- <span class="last-child" (click)="moveCar('prod', i)">Move to Stock</span> -->
+    <span class="last-child" (click)="moveCar('prod', i)">Move</span>
 
     <br><br>
 

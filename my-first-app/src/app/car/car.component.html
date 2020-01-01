@@ -8,7 +8,7 @@
 <br><br>
 
 <label for="owner">Car Owner : </label>
-<input type="text" name="owner" #name placeholder="Owner name" value="undefined">
+<input type="text" name="owner" #name placeholder="Owner name" value="">
 
 <br><br>
 
@@ -20,40 +20,42 @@
 
 <br><br>
 
-<label for="seat">Seater : </label>
-<input type="number" name="seat" #seat min="2" max="6" step="2" value="2">
+<!-- <label for="seat">Seater : </label>
+<input type="number" name="seat" #seat min="2" max="6" step="2" value="2"> -->
 
-<br><br>
+<!-- <br><br> -->
 
-<label for="open">Is open Car : </label>
-<input type="checkbox" name="open" #open>
+<!-- <label for="open">Is open Car : </label>
+<input type="checkbox" name="open" #open> -->
 
-<br><br>
+<!-- <br><br> -->
 
-<label for="color">Car Color : </label>
+<!-- <label for="color">Car Color : </label>
 <select name="color" #color>
   <option value="black">-----Default-----</option>
   <option value="black">Black</option>
   <option value="red">Red</option>
   <option value="blue">Blue</option>
   <option value="yellow">Yellow</option>
-</select>
+</select> -->
 
-<br><br>
+<!-- <br><br> -->
 
-<button (click)="addCar(name.value, model.value, seat.value, open.checked, color.value)">Add Car</button>
+<button (click)="addCar(name.value, model.value, seat.value, open.checked, color.value, 'stock')">Add Car</button>
 
 <br>
 
 <div style="width: 50%; display: inline-block; vertical-align: top">
   <p>In stock :</p>
-  <button (click)="moveCar('stock', 0)">Add to Production</button>
+  <button (click)="moveCar('stock', 0)" *ngIf="carList.length>0">Move to Production</button>
+  <button (click)="moveAllCar('stock')" *ngIf="carList.length>1">Move all to Production</button>
   <app-car-list [carList]="carList"></app-car-list>
 </div>
 
 
 <div style="width: 50%; display: inline-block; vertical-align: top">
   <p>In Production :</p>
-  <button (click)="moveCar('prod', 0)">Add to Stock</button>
+  <button (click)="moveCar('prod', 0)" *ngIf="prodCarList.length>0">Move to Stock</button>
+  <button (click)="moveAllCar('prod')" *ngIf="prodCarList.length>1">Move all to Stock</button>
   <app-car-list [carList]="prodCarList"></app-car-list>
 </div>
