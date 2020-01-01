@@ -43,56 +43,17 @@
 
 <button (click)="addCar(name.value, model.value, seat.value, open.checked, color.value)">Add Car</button>
 
-<p>In stock :</p>
+<br>
 
-<button (click)="moveCar('stock', 0)">Add to Production</button>
+<div style="width: 50%; display: inline-block; vertical-align: top">
+  <p>In stock :</p>
+  <button (click)="moveCar('stock', 0)">Add to Production</button>
+  <app-car-list [carList]="carList"></app-car-list>
+</div>
 
-<ol>
-  <li *ngFor="let car of carList; let i = index">
 
-    <span><strong>Car Owner :</strong> {{car.ownerName | titlecase}}</span>
-
-    <span><strong>Car Brand :</strong> {{car.brand}}</span>
-
-    <span><strong>Car Model :</strong> {{car.modelName}}</span>
-
-    <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
-
-    <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
-
-    <span><strong>Open Car :</strong>
-      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span>
-
-    <span class="last-child" (click)="moveCar('stock', i)">Move to Production</span>
-
-    <br><br>
-
-  </li>
-</ol>
-
-<p>In Production :</p>
-
-<button (click)="moveCar('prod', 0)">Add to Stock</button>
-
-<ol>
-  <li *ngFor="let car of prodCarList; let i = index">
-
-    <span><strong>Car Owner :</strong> {{car.ownerName | titlecase}}</span>
-
-    <span><strong>Car Brand :</strong> {{car.brand}}</span>
-
-    <span><strong>Car Model :</strong> {{car.modelName}}</span>
-
-    <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
-
-    <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
-
-    <span><strong>Open Car :</strong>
-      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span>
-
-    <span class="last-child" (click)="moveCar('prod', i)">Move to Stock</span>
-
-    <br><br>
-
-  </li>
-</ol>
+<div style="width: 50%; display: inline-block; vertical-align: top">
+  <p>In Production :</p>
+  <button (click)="moveCar('prod', 0)">Add to Stock</button>
+  <app-car-list [carList]="prodCarList"></app-car-list>
+</div>

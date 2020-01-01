@@ -1,1 +1,22 @@
-<p>car-list works!</p>
+<ol>
+  <li *ngFor="let car of carList; let i = index">
+
+    <span><strong>Car Owner :</strong> {{car.ownerName | titlecase}}</span>
+
+    <span><strong>Car Brand :</strong> {{car.brand}}</span>
+
+    <span><strong>Car Model :</strong> {{car.modelName}}</span>
+
+    <span><strong>Car Color :</strong><span [ngStyle]="{'color': car.color}"> {{car.color}}</span></span>
+
+    <span><strong>Seats in Car :</strong> {{car.numOfSeats}}</span>
+
+    <span><strong>Open Car :</strong>
+      <a [ngStyle]="{'color': car.isOpenCar==true?'green':'red'}"> {{car.isOpenCar}}</a></span>
+
+    <!-- <span class="last-child" (click)="moveCar('prod', i)">Move to Stock</span> -->
+
+    <br><br>
+
+  </li>
+</ol>
