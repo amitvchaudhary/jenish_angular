@@ -39,7 +39,7 @@ export class CarComponent implements OnInit {
     // car.color = color;
     // car.isOpenCar = open;
     // car.numOfSeats = seater;
-    car.status = status;
+    // car.status = status;
 
     this.carList.push(car);
   }
