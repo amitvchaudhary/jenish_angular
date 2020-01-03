@@ -49,15 +49,15 @@
 
 <div style="width: 50%; display: inline-block; vertical-align: top">
   <p>In stock :</p>
-  <button (click)="moveCar('stock', 0)" *ngIf="carList.length>0">Move to Production</button>
-  <button (click)="moveAllCar('stock')" *ngIf="carList.length>1">Move all to Production</button>
-  <app-car-list [carList]="carList"></app-car-list>
+  <button (click)="moveCar('Production', 0)" *ngIf="carList.length>0">Move to Production</button>
+  <button (click)="moveAllCar('Production')" *ngIf="carList.length>1">Move all to Production</button>
+  <app-car-list [carList]="carList" [moveTo]="'Production'" (swapCar)="swapCar($event)"></app-car-list>
 </div>
 
 
 <div style="width: 50%; display: inline-block; vertical-align: top">
   <p>In Production :</p>
-  <button (click)="moveCar('prod', 0)" *ngIf="prodCarList.length>0">Move to Stock</button>
-  <button (click)="moveAllCar('prod')" *ngIf="prodCarList.length>1">Move all to Stock</button>
-  <app-car-list [carList]="prodCarList"></app-car-list>
+  <button (click)="moveCar('Stock', 0)" *ngIf="prodCarList.length>0">Move to Stock</button>
+  <button (click)="moveAllCar('Stock')" *ngIf="prodCarList.length>1">Move all to Stock</button>
+  <app-car-list [carList]="prodCarList" [moveTo]="'Stock'" (swapCar)="swapCar($event)"></app-car-list>
 </div>

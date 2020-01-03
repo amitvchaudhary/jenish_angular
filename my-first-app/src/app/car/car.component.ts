@@ -45,8 +45,8 @@ export class CarComponent implements OnInit {
   }
 
   moveCar(arrayList, index) {
-    if (arrayList == 'stock') {
-      if (index == 0) {
+    if (arrayList === 'Production') {
+      if (index === 0) {
         this.prodCarList.push(this.carList.shift());
       }
       else {
@@ -54,8 +54,8 @@ export class CarComponent implements OnInit {
         this.carList.splice(index, 1);
       }
     }
-    if (arrayList == 'prod') {
-      if (index == 0) {
+    if (arrayList === 'Stock') {
+      if (index === 0) {
         this.carList.push(this.prodCarList.shift());
       }
       else {
@@ -66,18 +66,22 @@ export class CarComponent implements OnInit {
   }
 
   moveAllCar(value) {
-    if (value == 'stock') {
+    if (value === 'Production') {
       this.carList.forEach(element => {
         this.prodCarList.push(element);
         this.carList = [];
       });
     }
-    if (value == 'prod') {
+    if (value === 'Stock') {
       this.prodCarList.forEach(element => {
         this.carList.push(element);
         this.prodCarList = [];
       });
     }
+  }
+
+  swapCar(event) {
+    this.moveCar(event['carList'], event['index']);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Car } from '../core/car';
 
 @Component({
@@ -10,9 +10,21 @@ export class CarListComponent implements OnInit {
 
   @Input() carList: Car[] = [];
 
+  @Input() moveTo: string;
+
+  @Output() swapCar = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  moveCar(CAR_LIST, INDEX) {
+    let data: any = {
+      'carList': CAR_LIST,
+      'index': INDEX
+    }
+    this.swapCar.emit(data);
   }
 
 }
