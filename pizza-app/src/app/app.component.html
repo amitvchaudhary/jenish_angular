@@ -1,0 +1,31 @@
+<p>Add New Pizza :</p>
+<input type="text" #newPizza>
+<button (click)="addPizza(newPizza.value)">Add Pizza</button>
+
+<p>Pizza List</p>
+<ol>
+  <li *ngFor="let pizza of pizzaList; let i = index">
+    <p>{{pizza.name}} <button (click)="addToOrder(i)">Add to Order</button></p>
+  </li>
+</ol>
+
+<p>Topping List</p>
+<ol>
+  <li *ngFor="let topping of toppingList; let i = index">
+    <p>{{topping.name}} <button (click)="addTopping(i)">Add {{topping.name}}</button></p>
+  </li>
+</ol>
+
+<hr>
+
+<p>Ordered Pizza List</p>
+<ol>
+  <li *ngFor="let pizza of orderedPizzaList; let i = index">
+    <p>{{pizza.name}}</p>
+    <ol>
+      <li *ngFor="let topping of pizza.addedToppingList">
+        <p>{{topping.name}}</p>
+      </li>
+    </ol>
+  </li>
+</ol>
