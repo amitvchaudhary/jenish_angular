@@ -1,4 +1,8 @@
-<p>Add New Pizza :</p>
+<div class="heading">
+  <h1>{{title}}</h1>
+</div>
+
+<!-- <p>Add New Pizza :</p>
 <input type="text" #newPizza>
 <button (click)="addPizza(newPizza.value)">Add Pizza</button>
 
@@ -28,4 +32,45 @@
       </li>
     </ol>
   </li>
-</ol>
+</ol> -->
+
+<hr>
+
+<div class="flex-container">
+  <div>
+    <h2>Pizza List :</h2>
+    <div class="pizzalist-container">
+      <ul>
+        <li *ngFor="let pizza of pizzaList; let i = index">
+          <div class="pizza-container">
+            <img src="../assets/images/Pizza/ItalianPizza.jpg" alt="">
+            <div class="pizza-name">
+              <p>{{pizza.name}}</p>
+            </div>
+          </div>
+          <div class="check-box">
+            <input type="checkbox" [(ngModel)]="pizza.isOrdered" (change)="addToOrder(i)" />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <h2>Ordered Pizza :</h2>
+    <div class="pizzalist-container">
+      <ul>
+        <li *ngFor="let pizza of orderedPizzaList; let i = index">
+          <div class="pizza-container">
+            <img src="../assets/images/Pizza/ItalianPizza.jpg" alt="">
+            <div class="pizza-name">
+              <p>{{pizza.name}}</p>
+            </div>
+          </div>
+          <div class="check-box">
+            <input type="checkbox" [(ngModel)]="pizza.isOrdered" (change)="removeFromOrder(i)" />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

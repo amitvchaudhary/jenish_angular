@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Topping, Pizza } from './core/topping';
-import { SIZE, COLOR, TASTE } from './core/enumsList';
+import { SIZE, COLOR } from './core/enumsList';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,8 @@ import { SIZE, COLOR, TASTE } from './core/enumsList';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  title: string = "PizzaApp";
 
   ngOnInit() {
     console.log(this.pizzaList);
@@ -18,6 +20,7 @@ export class AppComponent {
     {
       name: 'Italian',
       size: '',
+      isOrdered: true,
       addedToppingList: [
         {
           name: 'Pepperoni',
@@ -33,21 +36,25 @@ export class AppComponent {
     {
       name: 'Cheezy7',
       size: '',
+      isOrdered: false,
       addedToppingList: []
     },
     {
       name: 'Paneer Butter Masala',
       size: '',
+      isOrdered: false,
       addedToppingList: []
     },
     {
       name: 'Garden Delight',
       size: '',
+      isOrdered: false,
       addedToppingList: []
     },
     {
       name: 'Margherita',
       size: '',
+      isOrdered: false,
       addedToppingList: []
     }
   ];
@@ -76,23 +83,49 @@ export class AppComponent {
     }
   ];
 
-  orderedPizzaList: Pizza[] = [];
+  orderedPizzaList: Pizza[] = [{
+    name: 'Italian',
+    size: '',
+    isOrdered: true,
+    addedToppingList: [
+      {
+        name: 'Pepperoni',
+        color: COLOR.RED,
+
+      },
+      {
+        name: 'Mushroom',
+        color: COLOR.BROWN,
+      }
+    ]
+  }];
+
+  marked = false;
 
   addPizza(pizza) {
     if (pizza != '') {
       const p = new Pizza();
       p.name = pizza;
       this.pizzaList.push(p);
-      console.log(this.pizzaList);
     }
   }
 
-  addTopping(index) {
-    this.orderedPizzaList[this.orderedPizzaList.length - 1].addedToppingList.push(this.toppingList[index]);
+  addToOrder(index) {
+    if (this.pizzaList[index].isOrdered == true) {
+      this.orderedPizzaList.push(this.pizzaList[index]);
+    }
+    else {
+      this.orderedPizzaList = this.orderedPizzaList.filter((obj) => this.pizzaList[index].name != obj.name);
+    }
   }
 
-  addToOrder(index) {
-    this.orderedPizzaList.push(this.pizzaList[index]);
-    console.log(this.orderedPizzaList);
+  removeFromOrder(index) {
+    this.pizzaList.map((pizza) => {
+      if (pizza.name === this.orderedPizzaList[index].name) {
+        pizza.isOrdered = false;
+      }
+      return pizza;
+    })
+    this.orderedPizzaList.splice(index, 1);
   }
 }
