@@ -18,6 +18,8 @@ export class AppComponent {
     console.log(this.toppingList);
   }
 
+  item: Item[]= [];
+
   pizzaList: Pizza[] = [
     {
       name: 'Italian',

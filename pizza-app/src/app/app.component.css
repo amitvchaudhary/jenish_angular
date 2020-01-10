@@ -35,6 +35,12 @@ h2 {
   border: none;
 }
 
+.flex-container .pizza-menu {
+  align-self: flex-start;
+  position: sticky;
+  top: 0;
+}
+
 .flex-container .pizzalist-container {
   padding: 20px;
 }

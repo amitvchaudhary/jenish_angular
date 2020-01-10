@@ -9,3 +9,8 @@ export class Pizza {
   isOrdered: boolean;
   addedToppingList: Topping[];
 }
+
+export class Item {
+  itemName: string;
+  pizzaList: Pizza[];
+}
