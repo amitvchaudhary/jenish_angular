@@ -5,7 +5,7 @@ export class Topping {
 
 export class Pizza {
   name: string;
-  size: string;
+  size: string[];
   isOrdered: boolean;
-  addedToppingList: Topping[] = [];
+  addedToppingList: Topping[];
 }

@@ -11,6 +11,8 @@ export class AppComponent {
 
   title: string = "PizzaApp";
 
+  selectedPizza: string = "italian"
+
   ngOnInit() {
     console.log(this.pizzaList);
     console.log(this.toppingList);
@@ -19,7 +21,7 @@ export class AppComponent {
   pizzaList: Pizza[] = [
     {
       name: 'Italian',
-      size: '',
+      size: [SIZE.SMALL, SIZE.MEDIUM, SIZE.LARGE],
       isOrdered: true,
       addedToppingList: [
         {
@@ -35,25 +37,25 @@ export class AppComponent {
     },
     {
       name: 'Cheezy7',
-      size: '',
+      size: [],
       isOrdered: false,
       addedToppingList: []
     },
     {
       name: 'Paneer Butter Masala',
-      size: '',
+      size: [],
       isOrdered: false,
       addedToppingList: []
     },
     {
       name: 'Garden Delight',
-      size: '',
+      size: [],
       isOrdered: false,
       addedToppingList: []
     },
     {
       name: 'Margherita',
-      size: '',
+      size: [],
       isOrdered: false,
       addedToppingList: []
     }
@@ -61,17 +63,17 @@ export class AppComponent {
 
   toppingList: Topping[] = [
     {
-      name: 'Pepperoni',
-      color: COLOR.RED,
-
+      name: 'Olives',
+      color: COLOR.BLACK,
     },
     {
       name: 'Mushroom',
       color: COLOR.BROWN,
     },
     {
-      name: 'Olives',
-      color: COLOR.BLACK,
+      name: 'Pepperoni',
+      color: COLOR.RED,
+
     },
     {
       name: 'Pineapple',
@@ -85,7 +87,7 @@ export class AppComponent {
 
   orderedPizzaList: Pizza[] = [{
     name: 'Italian',
-    size: '',
+    size: [SIZE.SMALL, SIZE.MEDIUM, SIZE.LARGE],
     isOrdered: true,
     addedToppingList: [
       {
@@ -96,7 +98,7 @@ export class AppComponent {
       {
         name: 'Mushroom',
         color: COLOR.BROWN,
-      }
+      },
     ]
   }];
 

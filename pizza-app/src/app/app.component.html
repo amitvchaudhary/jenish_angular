@@ -4,6 +4,10 @@
 
 <!-- <p>Add New Pizza :</p>
 <input type="text" #newPizza>
+<button (click)="addPizza(newPizza.value)">Add Pizza</button> -->
+
+<!-- <p>Add New Pizza :</p>
+<input type="text" #newPizza>
 <button (click)="addPizza(newPizza.value)">Add Pizza</button>
 
 <p>Pizza List</p>
@@ -40,7 +44,7 @@
   <div>
     <h2>Pizza List :</h2>
     <div class="pizzalist-container">
-      <ul>
+      <ul class="pl-ul">
         <li *ngFor="let pizza of pizzaList; let i = index">
           <div class="pizza-container">
             <img src="../assets/images/Pizza/ItalianPizza.jpg" alt="">
@@ -54,22 +58,67 @@
         </li>
       </ul>
     </div>
+
+    <hr>
+
+    <div class="topping-list">
+      <h2>Add topping to {{selectedPizza | titlecase}} Pizza :</h2>
+      <ul>
+        <li *ngFor="let topping of toppingList; let i = index">
+          <button>+</button>&emsp;{{topping.name}}
+        </li>
+      </ul>
+    </div>
   </div>
+
   <div>
     <h2>Ordered Pizza :</h2>
-    <div class="pizzalist-container">
-      <ul>
+    <div class="pizzalist-container ordered-pizzalist-container">
+      <ul class="pl-ul opl-ul">
         <li *ngFor="let pizza of orderedPizzaList; let i = index">
+          <div class="pizza-name">
+            <p>{{pizza.name}} Pizza : <span class="counter">(2)</span></p>
+          </div>
           <div class="pizza-container">
-            <img src="../assets/images/Pizza/ItalianPizza.jpg" alt="">
-            <div class="pizza-name">
-              <p>{{pizza.name}}</p>
+            <div class="img-container">
+              <div class="img-box">
+                <img src="../assets/images/Pizza/ItalianPizza.jpg" alt="">
+              </div>
             </div>
+            <div class="topping-container topping-list">
+              <ul class="opl-tl-ul">
+                <li *ngFor="let topping of pizza.addedToppingList; let i = index">
+                  <button>-</button>&emsp;{{topping.name}} <span class="counter">(2)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="size-container">
+            <div class="pizza-name">
+              <p>Select Size :</p>
+            </div>
+            <ul class="opl-sl-ul">
+              <li *ngFor="let size of pizza.size">
+                <input type="radio" name="size"><span>{{size | titlecase}}</span>
+              </li>
+            </ul>
           </div>
           <div class="check-box">
             <input type="checkbox" [(ngModel)]="pizza.isOrdered" (change)="removeFromOrder(i)" />
           </div>
+
+          <hr>
+
+          <div class="pizza-total-price">
+            <div class="pizza-name">
+              <p>Total price for {{pizza.name}} Pizza :</p>
+            </div>
+          </div>
         </li>
+
       </ul>
     </div>
   </div>
