@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Topping, Pizza } from './core/topping';
-import { SIZE, COLOR } from './core/enumsList';
+import { Type, Topping } from './core/classes';
 
 @Component({
   selector: 'app-root',
@@ -11,125 +10,159 @@ export class AppComponent {
 
   title: string = "PizzaApp";
 
-  selectedPizza: string = "italian"
-
   ngOnInit() {
-    console.log(this.pizzaList);
-    console.log(this.toppingList);
+
   }
 
-  item: Item[]= [];
-
-  pizzaList: Pizza[] = [
+  typeList: Type[] = [
     {
-      name: 'Italian',
-      size: [SIZE.SMALL, SIZE.MEDIUM, SIZE.LARGE],
-      isOrdered: true,
-      addedToppingList: [
+      typeName: 'Pizza',
+      itemList: [
         {
-          name: 'Pepperoni',
-          color: COLOR.RED,
-
+          itemName: 'Italian',
+          itemPrice: 200,
+          totalQuantity: 2,
+          itemImage: '../assets/images/Pizza/ItalianPizza.jpg',
+          quantityList: [
+            {
+              itemNum: 1,
+              itemPrice: 100,
+              itemSize: [
+                {
+                  size: 'small',
+                  price: 80,
+                },
+                {
+                  size: 'medium',
+                  price: 150,
+                },
+                {
+                  size: 'large',
+                  price: 200,
+                },
+              ],
+              toppingList: [
+                {
+                  for: 'Pizza',
+                  name: 'Pepperoni',
+                  quantity: 2,
+                  price: 20,
+                },
+                {
+                  for: 'Pizza',
+                  name: 'Mushroom',
+                  quantity: 1,
+                  price: 20,
+                },
+                {
+                  for: 'Pizza',
+                  name: 'Green Pepper',
+                  quantity: 1,
+                  price: 20,
+                },
+              ],
+            },
+            {
+              itemNum: 2,
+              itemPrice: 100,
+              itemSize: [
+                {
+                  size: 'small',
+                  price: 80,
+                },
+                {
+                  size: 'medium',
+                  price: 150,
+                },
+                {
+                  size: 'large',
+                  price: 200,
+                },
+              ],
+              toppingList: [
+                {
+                  for: 'Pizza',
+                  name: 'Pepperoni',
+                  quantity: 1,
+                  price: 20,
+                },
+                {
+                  for: 'Pizza',
+                  name: 'Mushroom',
+                  quantity: 1,
+                  price: 20,
+                },
+              ],
+            },
+          ],
         },
         {
-          name: 'Mushroom',
-          color: COLOR.BROWN,
-        }
-      ]
+          itemName: 'Paneer butter masala',
+          itemPrice: 200,
+          totalQuantity: 1,
+          itemImage: '../assets/images/Pizza/ItalianPizza.jpg',
+          quantityList: [
+            {
+              itemNum: 1,
+              itemPrice: 100,
+              itemSize: [
+                {
+                  size: 'small',
+                  price: 120,
+                },
+                {
+                  size: 'medium',
+                  price: 200,
+                }
+              ],
+              toppingList: [
+                {
+                  for: 'Pizza',
+                  name: 'Pepperoni',
+                  quantity: 1,
+                  price: 20,
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
-    {
-      name: 'Cheezy7',
-      size: [],
-      isOrdered: false,
-      addedToppingList: []
-    },
-    {
-      name: 'Paneer Butter Masala',
-      size: [],
-      isOrdered: false,
-      addedToppingList: []
-    },
-    {
-      name: 'Garden Delight',
-      size: [],
-      isOrdered: false,
-      addedToppingList: []
-    },
-    {
-      name: 'Margherita',
-      size: [],
-      isOrdered: false,
-      addedToppingList: []
-    }
-  ];
+  ]
+
+  orderedTypeList: Type[] = [];
 
   toppingList: Topping[] = [
     {
       name: 'Olives',
-      color: COLOR.BLACK,
+      for: 'Pizza',
+      quantity: 1,
+      price: 20,
     },
     {
       name: 'Mushroom',
-      color: COLOR.BROWN,
+      for: 'Pizza',
+      quantity: 1,
+      price: 20,
     },
     {
       name: 'Pepperoni',
-      color: COLOR.RED,
-
+      for: 'Pizza',
+      quantity: 1,
+      price: 20,
     },
     {
       name: 'Pineapple',
-      color: COLOR.YELLOW,
+      for: 'Burger',
+      quantity: 1,
+      price: 20,
     },
     {
       name: 'Green Pepper',
-      color: COLOR.GREEN,
+      for: 'Pizza',
+      quantity: 1,
+      price: 20,
     }
   ];
 
-  orderedPizzaList: Pizza[] = [{
-    name: 'Italian',
-    size: [SIZE.SMALL, SIZE.MEDIUM, SIZE.LARGE],
-    isOrdered: true,
-    addedToppingList: [
-      {
-        name: 'Pepperoni',
-        color: COLOR.RED,
-
-      },
-      {
-        name: 'Mushroom',
-        color: COLOR.BROWN,
-      },
-    ]
-  }];
-
-  marked = false;
-
-  addPizza(pizza) {
-    if (pizza != '') {
-      const p = new Pizza();
-      p.name = pizza;
-      this.pizzaList.push(p);
-    }
-  }
-
-  addToOrder(index) {
-    if (this.pizzaList[index].isOrdered == true) {
-      this.orderedPizzaList.push(this.pizzaList[index]);
-    }
-    else {
-      this.orderedPizzaList = this.orderedPizzaList.filter((obj) => this.pizzaList[index].name != obj.name);
-    }
-  }
-
-  removeFromOrder(index) {
-    this.pizzaList.map((pizza) => {
-      if (pizza.name === this.orderedPizzaList[index].name) {
-        pizza.isOrdered = false;
-      }
-      return pizza;
-    })
-    this.orderedPizzaList.splice(index, 1);
-  }
 }
