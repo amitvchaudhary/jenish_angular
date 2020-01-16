@@ -21,8 +21,9 @@ export class AppComponent {
         {
           itemName: 'Italian',
           itemPrice: 200,
-          totalQuantity: 2,
+          totalQuantity: 1,
           itemImage: '../assets/images/Pizza/ItalianPizza.jpg',
+          isOrdered: false,
           quantityList: [
             {
               itemNum: 1,
@@ -50,59 +51,49 @@ export class AppComponent {
                 },
                 {
                   for: 'Pizza',
-                  name: 'Mushroom',
-                  quantity: 1,
-                  price: 20,
-                },
-                {
-                  for: 'Pizza',
-                  name: 'Green Pepper',
+                  name: 'Green pepper',
                   quantity: 1,
                   price: 20,
                 },
               ],
-            },
-            {
-              itemNum: 2,
-              itemPrice: 100,
-              itemSize: [
-                {
-                  size: 'small',
-                  price: 80,
-                },
-                {
-                  size: 'medium',
-                  price: 150,
-                },
-                {
-                  size: 'large',
-                  price: 200,
-                },
-              ],
-              toppingList: [
-                {
-                  for: 'Pizza',
-                  name: 'Pepperoni',
-                  quantity: 1,
-                  price: 20,
-                },
-                {
-                  for: 'Pizza',
-                  name: 'Mushroom',
-                  quantity: 1,
-                  price: 20,
-                },
-              ],
+              addMoreTopping: false,
+              toggleToppingList() {
+                this.addMoreTopping = !this.addMoreTopping;
+              },
+              addTopping(topping: Topping) {
+                const element = this.toppingList.find((element) => element.name === topping.name);
+                if (element) {
+                  if (element.quantity < 3) {
+                    element.quantity++;
+                  }
+                } else {
+                  this.toppingList.push(topping);
+                }
+              },
+              removeTopping(selectedTopping: Topping) {
+                const element = this.toppingList.find((element) => element.name === selectedTopping.name);
+                if (element.quantity > 1) {
+                  element.quantity--;
+                } else {
+                  this.toppingList.splice(this.toppingList.indexOf(element), 1);
+                }
+              },
             },
           ],
+          addItem(quantity) {
+            this.quantityList.push(quantity);
+            this.totalQuantity++;
+          },
         },
         {
           itemName: 'Paneer butter masala',
           itemPrice: 200,
           totalQuantity: 1,
           itemImage: '../assets/images/Pizza/ItalianPizza.jpg',
+          isOrdered: false,
           quantityList: [
             {
+
               itemNum: 1,
               itemPrice: 100,
               itemSize: [
@@ -123,16 +114,41 @@ export class AppComponent {
                   price: 20,
                 },
               ],
+              addMoreTopping: false,
+              toggleToppingList() {
+                this.addMoreTopping = !this.addMoreTopping;
+              },
+              addTopping(topping: Topping) {
+                const element = this.toppingList.find((element) => element.name === topping.name);
+                if (element) {
+                  if (element.quantity < 3) {
+                    element.quantity++;
+                  }
+                } else {
+                  this.toppingList.push(topping);
+                }
+              },
+              removeTopping(selectedTopping: Topping) {
+                const element = this.toppingList.find((element) => element.name === selectedTopping.name);
+                if (element.quantity > 1) {
+                  element.quantity--;
+                } else {
+                  this.toppingList.splice(this.toppingList.indexOf(element), 1);
+                }
+              },
             },
           ],
+          addItem(item) {
+
+          },
         },
       ],
     },
-  ]
+  ];
 
   orderedTypeList: Type[] = [];
 
-  toppingList: Topping[] = [
+  allToppingList: Topping[] = [
     {
       name: 'Olives',
       for: 'Pizza',
@@ -158,7 +174,7 @@ export class AppComponent {
       price: 20,
     },
     {
-      name: 'Green Pepper',
+      name: 'Green pepper',
       for: 'Pizza',
       quantity: 1,
       price: 20,

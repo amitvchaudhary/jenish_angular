@@ -8,7 +8,9 @@ export class Item {
   itemPrice: number;
   totalQuantity: number;
   itemImage: any;
+  isOrdered: boolean = false;
   quantityList: Quantity[];
+  addItem(quantity){};
 }
 
 export class Quantity {
@@ -16,6 +18,31 @@ export class Quantity {
   itemPrice: number;
   itemSize: Size[];
   toppingList: Topping[];
+  addMoreTopping: boolean = false;
+  toggleToppingList() {
+    this.addMoreTopping = !this.addMoreTopping;
+  };
+  addTopping(topping) {
+    const element = this.toppingList.find((element) => element.name === topping.name);
+    if (element) {
+      if (element.quantity < 5) {
+        element.quantity++;
+      } else {
+        element.quantity = 5;
+      }
+
+    } else {
+      this.toppingList.push(topping);
+    }
+  };
+  removeTopping(selectedTopping) {
+    const element = this.toppingList.find((element) => element.name === selectedTopping.name);
+    if (element.quantity > 1) {
+      element.quantity--;
+    } else {
+      this.toppingList.splice(this.toppingList.indexOf(element), 1);
+    }
+  }
 }
 
 export class Size {

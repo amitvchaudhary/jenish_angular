@@ -8,7 +8,7 @@
       <li class="tl-li" *ngFor="let type of typeList">
         <p class="type-name">{{type.typeName}} :</p>
         <ul class="il-ul">
-          <li class="il-li" *ngFor="let item of type.itemList">
+          <li class="il-li" *ngFor="let item of type.itemList; let i = index">
             <div class="item-container">
               <div class="img-box">
                 <img src="{{item.itemImage}}" alt="">
@@ -16,8 +16,8 @@
                   <p>{{item.itemName | titlecase}}</p>
                 </div>
               </div>
-              <div class="check-box">
-                <input type="checkbox">
+              <div class="action-check-box">
+                <input type="checkbox" [(ngModel)]="item.isOrdered">
               </div>
             </div>
           </li>
@@ -25,15 +25,19 @@
       </li>
     </ul>
   </div>
+
   <div class="right">
+    <!-- type list -->
     <ul class="tl-ul otl-ul">
       <li class="tl-li otl-li" *ngFor="let type of typeList">
-        <p class="type-name">Ordered {{type.typeName}}</p>
+        <p class="type-name">Ordered {{type.typeName | titlecase}} :</p>
+        <!-- item list -->
         <ul class="oil-ul">
           <li class="oil-li" *ngFor="let item of type.itemList">
+            <!-- quntity list -->
             <ul class="oiql-ul">
               <li class="oiql-li" *ngFor="let quantity of item.quantityList">
-                <p class="item-name">{{item.itemName}}
+                <p class="item-name">{{item.itemName | titlecase}} {{type.typeName | titlecase}}
                   <span *ngIf="item.totalQuantity>1">({{quantity.itemNum}}/{{item.totalQuantity}})</span></p>
                 <div class="item-details-container">
                   <div class="img-container">
@@ -42,28 +46,71 @@
                     </div>
                   </div>
                   <div class="stpl-container">
+                    <!-- selected topping list -->
                     <ul class="stpl-ul">
                       <li class="stpl-li" *ngFor="let selectedTopping of quantity.toppingList">
                         <div class="action-container">
-                          <button class="action-btn remove-btn"></button>
+                          <button class="action-btn remove-btn"
+                            (click)="quantity.removeTopping(selectedTopping)"></button>
                           <span class="action-txt">{{selectedTopping.name}}
                             <sup *ngIf="selectedTopping.quantity>1">({{selectedTopping.quantity}})</sup></span>
                         </div>
                       </li>
                     </ul>
                     <div class="action-container">
-                      <input type="checkbox" class="show-hide-checkbox">
-                      <span class="action-txt">Add More</span>
+                      <input type="checkbox" class="show-hide-checkbox" [(ngModel)]="quantity.addMoreTopping"
+                        (click)="quantity.toggleToppingList()">
+                      <span class="action-txt">Add toppings</span>
                     </div>
                   </div>
                 </div>
-                <div class="tpl-container">
-                  <p class="item-name">Select Topping :</p>
-                  <ul class="tpl-ul">
-                    <li class="tpl-li" *ngFor="let topping of toppingList">
+                <div class="tpl-container" *ngIf="quantity.addMoreTopping">
+                  <p class="item-name">Add toppings :</p>
+                  <!-- global topping list -->
+                  <ul class="oi-cmn-ul tpl-ul">
+                    <li class="oi-cmn-li tpl-li" *ngFor="let topping of allToppingList">
+                      <div class="action-container">
+                        <button class="action-btn add-btn" (click)="quantity.addTopping(topping)"></button>
+                        <span class="action-txt">{{topping.name}} <span
+                            class="price-txt">(Rs.{{topping.price}})</span></span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="oisl-container">
+                  <p class="item-name">Select size :</p>
+                  <!-- size list -->
+                  <ul class="oi-cmn-ul oisl-ul">
+                    <li class="oi-cmn-li oisl-li" *ngFor="let size of quantity.itemSize">
+                      <div class="action-container">
+                        <input type="radio" name="size" class="action-radio">
+                        <span class="action-txt">{{size.size | titlecase}} <span
+                            class="price-txt">(Rs.{{size.price}})</span></span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="oisl-container">
+                  <p class="item-name">Perform Action :</p>
+                  <ul class="oi-cmn-ul perf-act-ul">
+                    <li class="oi-cmn-li perf-act-ul">
+                      <div class="action-container">
+                        <button class="action-btn add-btn" (click)="item.addItem(quantity)"></button>
+                        <span class="action-txt">Add {{item.itemName | titlecase}} {{type.typeName}}</span>
+                      </div>
+                    </li>
+                    <li class="oi-cmn-li perf-act-ul">
+                      <div class="action-container">
+                        <button class="action-btn remove-btn"></button>
+                        <span [ngClass]="{cssClass: expression}" class="action-txt">Remove {{item.itemName | titlecase}}
+                          {{type.typeName}}
+                          <span *ngIf="item.totalQuantity>1">({{quantity.itemNum}}/{{item.totalQuantity}})</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li class="oi-cmn-li perf-act-ul">
                       <div class="action-container">
                         <button class="action-btn add-btn"></button>
-                        <span class="action-txt">{{topping.name}}</span>
                       </div>
                     </li>
                   </ul>
