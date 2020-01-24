@@ -6,18 +6,18 @@
   <div class="left">
     <ul class="tl-ul">
       <li class="tl-li" *ngFor="let type of typeList">
-        <p class="type-name">{{type.typeName}} :</p>
+        <p class="type-name">{{type.name}} :</p>
         <ul class="il-ul">
           <li class="il-li" *ngFor="let item of type.itemList; let i = index">
             <div class="item-container">
               <div class="img-box">
-                <img src="{{item.itemImage}}" alt="">
+                <img src="{{item.image}}" alt="">
                 <div class="item-name">
-                  <p>{{item.itemName | titlecase}}</p>
+                  <p>{{item.name | titlecase}}</p>
                 </div>
               </div>
               <div class="action-check-box">
-                <input type="checkbox" [(ngModel)]="item.isOrdered">
+                <input type="checkbox" [(ngModel)]="item.isOrdered" (change)="orderItem(item)">
               </div>
             </div>
           </li>
@@ -30,19 +30,19 @@
     <!-- type list -->
     <ul class="tl-ul otl-ul">
       <li class="tl-li otl-li" *ngFor="let type of typeList">
-        <p class="type-name">Ordered {{type.typeName | titlecase}} :</p>
+        <p class="type-name">Ordered {{type.name | titlecase}} :</p>
         <!-- item list -->
         <ul class="oil-ul">
           <li class="oil-li" *ngFor="let item of type.itemList">
             <!-- quntity list -->
             <ul class="oiql-ul">
               <li class="oiql-li" *ngFor="let quantity of item.quantityList">
-                <p class="item-name">{{item.itemName | titlecase}} {{type.typeName | titlecase}}
+                <p class="item-name">{{item.name | titlecase}} {{type.name | titlecase}}
                   <span *ngIf="item.totalQuantity>1">({{quantity.itemNum}}/{{item.totalQuantity}})</span></p>
                 <div class="item-details-container">
                   <div class="img-container">
                     <div class="img-box">
-                      <img src="{{item.itemImage}}" alt="">
+                      <img src="{{item.image}}" alt="">
                     </div>
                   </div>
                   <div class="stpl-container">
@@ -95,25 +95,24 @@
                   <ul class="oi-cmn-ul perf-act-ul">
                     <li class="oi-cmn-li perf-act-ul">
                       <div class="action-container">
-                        <button class="action-btn add-btn" (click)="item.addItem(quantity)"></button>
-                        <span class="action-txt">Add {{item.itemName | titlecase}} {{type.typeName}}</span>
+                        <button class="action-btn add-btn" (click)="item.addQuantity(quantity)"></button>
+                        <span class="action-txt">Add {{item.name | titlecase}} {{type.name}}</span>
                       </div>
                     </li>
                     <li class="oi-cmn-li perf-act-ul">
                       <div class="action-container">
-                        <button class="action-btn remove-btn"></button>
-                        <span [ngClass]="{cssClass: expression}" class="action-txt">Remove {{item.itemName | titlecase}}
-                          {{type.typeName}}
+                        <button class="action-btn remove-btn" (click)="item.removeQuantity(quantity)"></button>
+                        <span [ngClass]="{cssClass: expression}" class="action-txt">Remove {{item.name | titlecase}}
+                          {{type.name}}
                           <span *ngIf="item.totalQuantity>1">({{quantity.itemNum}}/{{item.totalQuantity}})</span>
                         </span>
                       </div>
                     </li>
-                    <li class="oi-cmn-li perf-act-ul">
-                      <div class="action-container">
-                        <button class="action-btn add-btn"></button>
-                      </div>
-                    </li>
                   </ul>
+                </div>
+                <div class="oisl-container">
+                  <p class="item-name">{{item.name}} {{type.name}} Total :</p>
+
                 </div>
               </li>
             </ul>

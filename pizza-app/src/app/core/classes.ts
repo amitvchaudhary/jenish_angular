@@ -1,16 +1,18 @@
 export class Type {
-  typeName: string;
+  name: string;
   itemList: Item[];
 }
 
 export class Item {
-  itemName: string;
-  itemPrice: number;
+  for: string;
+  name: string;
+  price: number;
   totalQuantity: number;
-  itemImage: any;
+  image: any;
   isOrdered: boolean = false;
   quantityList: Quantity[];
-  addItem(quantity){};
+  addQuantity(quantity) { };
+  removeQuantity(quantity) { };
 }
 
 export class Quantity {

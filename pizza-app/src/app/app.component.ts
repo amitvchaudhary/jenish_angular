@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Type, Topping } from './core/classes';
+import { Type, Topping, Item } from './core/classes';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +16,14 @@ export class AppComponent {
 
   typeList: Type[] = [
     {
-      typeName: 'Pizza',
+      name: 'Pizza',
       itemList: [
         {
-          itemName: 'Italian',
-          itemPrice: 200,
+          for: 'Pizza',
+          name: 'Italian',
+          price: 200,
           totalQuantity: 1,
-          itemImage: '../assets/images/Pizza/ItalianPizza.jpg',
+          image: '../assets/images/Pizza/ItalianPizza.jpg',
           isOrdered: false,
           quantityList: [
             {
@@ -80,16 +81,23 @@ export class AppComponent {
               },
             },
           ],
-          addItem(quantity) {
-            this.quantityList.push(quantity);
+          addQuantity(quantity) {
             this.totalQuantity++;
+          },
+          removeQuantity(quantity) {
+            if (this.totalQuantity == 1) {
+              return false;
+            } else {
+              this.totalQuantity--;
+            }
           },
         },
         {
-          itemName: 'Paneer butter masala',
-          itemPrice: 200,
+          for: 'Pizza',
+          name: 'Paneer butter masala',
+          price: 200,
           totalQuantity: 1,
-          itemImage: '../assets/images/Pizza/ItalianPizza.jpg',
+          image: '../assets/images/Pizza/ItalianPizza.jpg',
           isOrdered: false,
           quantityList: [
             {
@@ -138,8 +146,16 @@ export class AppComponent {
               },
             },
           ],
-          addItem(item) {
+          addQuantity(quantity) {
 
+          },
+          removeQuantity(quantity) {
+            if (this.totalQuantity == 1) {
+              return false;
+            } else {
+              this.totalQuantity--;
+            }
+            console.log(this.totalQuantity);
           },
         },
       ],
@@ -147,6 +163,12 @@ export class AppComponent {
   ];
 
   orderedTypeList: Type[] = [];
+
+  orderItem(item) {
+    const type = new Type();
+    type.name = item.itemFor;
+    this.orderedTypeList.push(type);
+  }
 
   allToppingList: Topping[] = [
     {
